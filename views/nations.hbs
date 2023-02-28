@@ -1,0 +1,166 @@
+<html lang="en">
+
+  <head>
+    <title>
+      {{title}}
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    {{! Font Awesome }}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/stylesheets/nations.css" />
+  </head>
+
+  <body>
+    {{> header}}
+
+    {{! title }}
+    <section class="container mb-5">
+      <div class="nation-title p-4">
+        <div class="inner p-4">
+          <h1 class="text-center text-uppercase m-0 p-2">Nations</h1>
+        </div>
+      </div>
+    </section>
+
+    {{! Button modal }}
+    <div class="container">
+      <button
+        type="button"
+        class="btn add-new"
+        data-bs-toggle="modal"
+        data-bs-target="#createModalNation"
+      >
+        <i class="fa-sharp fa-solid fa-plus"></i>
+        Add new nation
+      </button>
+    </div>
+
+    {{! Nations  }}
+    <section class="container nation mt-5">
+      <div class="row">
+        {{#each nations}}
+          <div class="card-nation col-12 col-sm-6 col-md-4">
+            <div class="card-nation-content p-2 mb-5">
+              <div class="row">
+                <div class="col-md-6">
+                  <img class="w-100" src={{this.image}} />
+                </div>
+                <div class="col-md-5 pt-2">
+                  <h3>
+                    {{this.name}}
+                  </h3>
+                  <p class="m-0">
+                    {{this.description}}
+                  </p>
+                </div>
+                <div class="col-md-1 action">
+                  <div class="btn-group ml-2">
+                    <button
+                      type="button"
+                      class="btn btn-info dropdown-action"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu p-1">
+                      <li class="item-btn mb-1">
+                        <a
+                          onclick="openEditModal('{{this._id}}')"
+                          class="btn btn-warning read-btn w-100"
+                          data-bs-toggle="modal"
+                          data-bs-target="#updateModal"
+                        >
+                          <i class="fa-sharp fa-solid fa-pen"></i>
+                          Edit
+                        </a>
+                      </li>
+                      <li class="item-btn m-0">
+                        <button
+                          data-id="{{this._id}}"
+                          type="button"
+                          class="btn btn-danger read-btn w-100"
+                          data-bs-toggle="modal"
+                          data-bs-target="#deleteNationModal"
+                        >
+                          <i class="fa-sharp fa-solid fa-trash"></i>
+                          Delete
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </section>
+
+    {{> modalCreateNation}}
+    {{> modalUpdateNation}}
+    {{> modalDeleteNation}}
+    {{> footer}}
+
+    <script>
+      function openEditModal(nationId) { 
+        $.ajax({
+          url: '/nations/edit/' + nationId, 
+          method: 'GET', 
+          success: function (data) {
+            $('#edit-nation-form').attr('action', '/nations/edit/' + data.nation.id + '?_method=PUT'); 
+            $('#nation-input-name').val(data.nation.name);
+            $('#nation-input-description').val(data.nation.description);
+            $('#nation-input-image').val(data.nation.image); 
+            } 
+          }); 
+      }
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    >
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    >
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+
+</html>

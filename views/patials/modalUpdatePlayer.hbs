@@ -1,0 +1,175 @@
+<div class="modal fade" id="updateModalPlayer" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update New Nation</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form method="post" id="edit-player-form">
+        <div class="modal-body">
+          <div class="d-flex mb-3">
+            <label class="form-label">Name</label>
+            <div class="d-flex w-100 flex-column">
+              <input
+                id="player-input-name"
+                name="name"
+                type="text"
+                class="form-control w-100"
+                placeholder="name"
+              />
+              <p class="message-error ml-2 mb-0 text-danger"></p>
+            </div>
+          </div>
+          <div class="d-flex mb-3">
+            <label class="form-label">Image URL</label>
+            <div class="d-flex w-100 flex-column">
+              <input 
+                id="player-input-image"
+                name="image"
+                type="url"
+                class="form-control w-100"
+                placeholder="image url"
+              />
+              <p class="message-error ml-2 mb-0 text-danger"></p>
+            </div>
+          </div>
+          <div class="d-flex mb-3">
+            <label class="form-label">Club</label>
+            <div class="d-flex w-100 flex-column">
+              <input 
+                id="player-input-club"
+                name="club"
+                type="text"
+                class="form-control w-100"
+                placeholder="club"
+              />
+              <p class="message-error ml-2 mb-0 text-danger"></p>
+            </div>
+          </div>
+
+          <div class="d-flex mb-3">
+            <label class="form-label">Goals</label>
+            <div class="d-flex w-100 flex-column">
+              <input 
+                id="player-input-goals"
+                name="goals"
+                min="0"
+                type="number"
+                class="form-control w-100"
+                placeholder="goal"
+              />
+              <p class="message-error ml-2 mb-0 text-danger"></p>
+            </div>
+          </div>
+          <div class="d-flex mb-3">
+            <label class="form-label">Description</label>
+            <div class="d-flex w-100 flex-column">
+              <textarea 
+                id="player-input-description"
+                name="description"
+                class="form-control w-100"
+                placeholder="description"
+                rows="3"
+              ></textarea>
+              <p class="message-error ml-2 mb-0 text-danger"></p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex mb-3">
+              <label class="form-label">Position</label>
+              <select id="player-input-position" name="position" class="form-select">
+                {{#each positionList}}
+                  <option 
+                    value={{this.name}} 
+                  >
+                    {{this.name}}
+                  </option>
+                {{/each}}
+              </select>
+            </div>
+
+            <div class="d-flex mb-3">
+              <label class="form-label">Captain</label>
+              <select id="player-input-isCaptain" name="isCaptain" class="form-select">
+                {{#each isCaptain}}
+                  <option 
+                    value="{{this.value}}"
+                  >
+                    {{this.name}}
+                  </option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >Close</button>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector("#edit-player-form");
+      const nameInput = form.querySelector("input[name='name']");
+      const imageInput = form.querySelector("input[name='image']");
+      const clubInput = form.querySelector("input[name='club']");
+      const goalsInput = form.querySelector("input[name='goals']");
+      const descriptionInput = form.querySelector("textarea[name='description']");
+      const errorTags = form.querySelectorAll(".message-error");
+
+      form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const nameValue = nameInput.value.trim();
+          const imageValue = imageInput.value.trim();
+          const clubValue = clubInput.value.trim();
+          const goalsValue = goalsInput.value.trim();
+          const descriptionValue = descriptionInput.value.trim();
+
+          if (!nameValue) {
+              errorTags[0].textContent = "Please enter a name.";
+          } else {
+              errorTags[0].textContent = "";
+          }
+
+          if (!imageValue) {
+              errorTags[1].textContent = "Please enter an image URL.";
+          } else {
+              errorTags[1].textContent = "";
+          }
+
+          if (!clubValue) {
+              errorTags[2].textContent = "Please enter a club.";
+          } else {
+              errorTags[2].textContent = "";
+          }
+
+          if (!goalsValue) {
+              errorTags[3].textContent = "Please enter goals.";
+          } else {
+              errorTags[3].textContent = "";
+          }
+
+          if (!descriptionValue) {
+              errorTags[4].textContent = "Please enter a description.";
+          } else {
+              errorTags[4].textContent = "";
+          }
+
+          if (nameValue && descriptionValue && imageValue && goalsValue && clubValue) {
+              form.submit();
+          }
+      });
+  });
+</script>

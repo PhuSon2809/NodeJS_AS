@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Inter:wght@400;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=PT+Serif:wght@400;700&family=Poppins:wght@200;300;400;500;600;700&family=Raleway:ital,wght@0,100;0,300;0,400;0,500;1,600&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&family=Tiro+Devanagari+Sanskrit&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppin", sans-serif;
+}
+
+.player-detail {
+  margin: 50px 0 100px 0;
+}
+.player-detail .banner {
+  height: 300px;
+  width: 100%;
+  margin-bottom: 100px;
+}
+.player-detail .card-player {
+  width: 100%;
+  padding: 50px;
+  background-color: #142978;
+  overflow: hidden;
+}
+.player-detail .card-player .img-box img {
+  width: 100%;
+  background-color: #e7e9f1;
+}
+.player-detail .card-player .img-box p {
+  z-index: 600;
+  padding: 5px 15px;
+  right: -10px;
+  bottom: -30px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #ff5527;
+}
+.player-detail .card-player .box-content-action {
+  height: 100%;
+  display: flex;
+  align-items: unset;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 30px;
+}
+.player-detail .card-player .box-content-action .content {
+  color: #fff;
+}
+.player-detail .card-player .box-content-action .content .name {
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding-top: 10px;
+  margin-bottom: 40px;
+}
+.player-detail .card-player .box-content-action .content .line {
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5px;
+  background: #102160;
+  margin-bottom: 20px;
+}
+.player-detail .card-player .box-content-action .content .line .tag {
+  font-weight: bold;
+  font-size: 18px;
+}
+.player-detail .card-player .box-content-action .content .goal-captain {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: unset;
+  flex-direction: row;
+  gap: 50px;
+}
+.player-detail .card-player .box-content-action .content .goal-captain .goal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 3px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  background: #ff5527;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.player-detail .card-player .box-content-action .content .goal-captain label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: -moz-fit-content;
+  width: fit-content;
+  gap: 3px;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  background: #ff5527;
+  font-weight: 600;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.player-detail .card-player .box-content-action .action {
+  text-align: right;
+}
+.player-detail .card-player .box-content-action .action .btn-group .dropdown-action {
+  border-radius: 99px !important;
+  width: 40px;
+  height: 40px;
+  color: #fff !important;
+  font-size: 21px;
+  background-color: #ff5527;
+  outline: none;
+}
+.player-detail .card-player .box-content-action .action .btn-group .dropdown-menu {
+  min-width: 2rem !important;
+}
+.player-detail .card-player .box-content-action .action .btn-group .dropdown-menu li .read-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: unset;
+  gap: 5px;
+}
+
+.modal .modal-dialog .modal-content .modal-header {
+  background-color: #142978;
+}
+.modal .modal-dialog .modal-content .modal-header .modal-title,
+.modal .modal-dialog .modal-content .modal-header .btn-close {
+  color: #fff;
+}
+.modal .modal-dialog .modal-content .modal-body input {
+  overflow: hidden;
+}
+.modal .modal-dialog .modal-content .modal-body .form-label {
+  min-width: 100px;
+}
+.modal .modal-dialog .modal-content .modal-body .form-select {
+  width: -moz-fit-content;
+  width: fit-content;
+}/*# sourceMappingURL=playerDetail.css.map */

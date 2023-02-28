@@ -1,0 +1,207 @@
+<html lang="en">
+
+  <head>
+    <title>
+      {{title}}
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    {{! Font Awesome }}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+  </head>
+
+  <body>
+    {{> header}}
+
+
+    <!-- carousel -->
+    <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-ride="carousel"
+    >
+      <div class="carousel-inner h-100">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="content">
+                <p class="number-page d-inline-block text-center">1</p>
+                <div class="content-inner">
+                  <h1>Argentina results, scores and standings</h1>
+                  <p class="text-justify">Argentina are world champions for the
+                    third time after a heart-stopping final at FIFA World Cup
+                    2022 in Qatar. Lionel Messi scored twice in the final as he
+                    claimed the one trophy missing from his collection in his
+                    stellar career. Messi put Argentina ahead from the penalty
+                    spot to become the first man to score in each of the
+                    knockout stages since the first round of 16 at Mexico 1986.</p>
+                  <div class="line"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <img
+                class="d-block w-100"
+                src="images/winner.jpg"
+                alt="First slide"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="content">
+                <p class="number-page d-inline-block text-center">2</p>
+                <div class="content-inner">
+                  <h1>Argentina results, scores and standings</h1>
+                  <p class="text-justify">Argentina are world champions for the
+                    third time after a heart-stopping final at FIFA World Cup
+                    2022 in Qatar. Lionel Messi scored twice in the final as he
+                    claimed the one trophy missing from his collection in his
+                    stellar career. Messi put Argentina ahead from the penalty
+                    spot to become the first man to score in each of the
+                    knockout stages since the first round of 16 at Mexico 1986.</p>
+                  <div class="line"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <img
+                class="d-block w-100"
+                src="/images/messi.jpg"
+                alt="First slide"
+              />
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nations -->
+    <section class="nation mt-5">
+      <div class="container">
+        <h1 class="title text-center text-uppercase mb-4">Nations</h1>
+
+        <div class="nations-content">
+          <div class="row">
+            {{#each nations}}
+              <div class="card-nation col-12 col-sm-6 col-md-3">
+                <div class="card-nation-content p-2">
+                  <div class="row">
+                    <div class="col-12">
+                      <img class="w-100" src={{this.image}} />
+                    </div>
+                    <div class="col-sm text-center pt-2">
+                      <h5>
+                        {{this.name}}
+                      </h5>
+                      <p class="m-0">
+                        {{this.description}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          </div>
+          <div class="text-center mt-4">
+            <a href="/nations" class="load-more-btn">Load more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- player -->
+    <section class="player mt-0 mt-sm-3 mt-md-5">
+      <div class="containers">
+        <h1 class="title text-center text-uppercase">Players</h1>
+
+        <div class="row">
+          {{#each players}}
+            <div class="col-12 col-sm-6 col-md-3 mb-5">
+              <div class="player-content-list">
+                <div class="img-box">
+                  <img class="" src={{this.image}} />
+                </div>
+
+               <div class="box-content-action">
+                  <div class="content">
+                    <h4 class="name">{{this.name}}</h4>
+                    <div class="line d-flex">
+                      <span class="tag">Club:</span>
+                      <span>{{this.club}}</span>
+                    </div>
+                    <div class="line d-flex">
+                      <span class="tag">Position:</span>
+                      <span>{{this.position}}</span>
+                    </div>
+                    <div class="line-goal d-flex">
+                        <label class="text-center">
+                          <i class="fa-solid fa-futbol"></i>
+                          {{this.goals}}
+                        </label>
+                        {{#if this.isCaptain}}
+                          <label>
+                            <i class="fa-solid fa-star"></i>
+                            Captain
+                          </label>
+                        {{/if}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+
+        <div class="text-center mb-5">
+            <a href="/players" class="load-more-btn">Load more</a>
+        </div>
+      </div>
+    </section>
+
+    {{> footer}}  
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    >
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    >
+    </script>
+  </body>
+
+</html>

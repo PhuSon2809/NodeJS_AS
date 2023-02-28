@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Inter:wght@400;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=PT+Serif:wght@400;700&family=Poppins:wght@200;300;400;500;600;700&family=Raleway:ital,wght@0,100;0,300;0,400;0,500;1,600&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&family=Tiro+Devanagari+Sanskrit&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Poppin", sans-serif;
+}
+
+.nation-title {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 3px 2px 8px rgba(20, 42, 120, 0.5490196078);
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+.nation-title .inner {
+  background-color: rgba(20, 42, 120, 0.7882352941);
+  border-radius: 10px;
+}
+.nation-title .inner h1 {
+  line-height: 44px;
+  font-size: 45px;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.add-new {
+  font-size: 20px;
+  color: #fff;
+  background-color: #142978;
+  letter-spacing: 1px;
+}
+.add-new:hover {
+  background-color: #142978 !important;
+  color: #fff !important;
+}
+
+.nation .card-nation {
+  transition: all 0.3s linear;
+}
+.nation .card-nation .card-nation-content {
+  border: 10px solid #e7e9f1;
+  border-radius: 5px;
+}
+.nation .card-nation .card-nation-content img {
+  height: 140px;
+  border-radius: 5px;
+}
+.nation .card-nation .card-nation-content h3 {
+  color: gray;
+  font-weight: 700;
+}
+.nation .card-nation .action {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: unset;
+}
+.nation .card-nation .action .btn-group .dropdown-action {
+  border-radius: 99px !important;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  font-size: 21px;
+  background: #142978;
+}
+.nation .card-nation .action .btn-group .dropdown-menu {
+  min-width: 2rem !important;
+}
+.nation .card-nation .action .btn-group .dropdown-menu li .read-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: unset;
+  gap: 5px;
+}
+.nation .card-nation:hover {
+  transform: scale(1.02);
+}
+
+.modal .modal-dialog .modal-content .modal-header {
+  background-color: #142978;
+}
+.modal .modal-dialog .modal-content .modal-header .modal-title,
+.modal .modal-dialog .modal-content .modal-header .btn-close {
+  color: #fff;
+}
+.modal .modal-dialog .modal-content .modal-body input {
+  overflow: hidden;
+}
+.modal .modal-dialog .modal-content .modal-body .message-error {
+  color: red;
+  margin-left: 10px;
+}/*# sourceMappingURL=nations.css.map */

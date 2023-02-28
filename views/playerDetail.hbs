@@ -1,0 +1,160 @@
+<html lang="en">
+
+  <head>
+    <title>{{title}}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+      {{! Font Awesome }}
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="/stylesheets/playerDetail.css" />
+  </head>
+
+  <body>
+    {{> header}}
+
+    {{! Detail }}
+    <div class="player-detail">
+      <div class="container">
+        <img class="banner" src="/images/banner1.jpg" alt="banner" />
+        <div class="row card-player m-0">
+          <div class="col-md-5">
+            <div class="img-box">
+              <img class="" src={{playerDeatail.image}} />
+            </div>
+          </div>
+
+          <div class="col-md-7 pl-3">
+            <div class="box-content-action">
+               <div class="content">
+                    <h1 class="name">{{playerDeatail.name}}</h1>
+                    <div class="line d-flex">
+                      <span class="tag">Club:</span>
+                      <span>{{playerDeatail.club}}</span>
+                    </div>
+                    <div class="line d-flex">
+                      <span class="tag">Position:</span>
+                      <span>{{playerDeatail.position}}</span>
+                    </div>
+                    <div class="line">
+                      <p class="tag mb-1">Description:</p>
+                      <span>{{playerDeatail.description}}</span>
+                    </div>
+                   <div class="goal-captain">
+                      {{#if playerDeatail.isCaptain}}
+                        <label>
+                          <i class="fa-solid fa-star"></i>
+                          Captain
+                        </label>
+                      {{/if}}
+                      <p class="goal text-center ">
+                        <i class="fa-solid fa-futbol"></i>
+                        {{playerDeatail.goals}}
+                      </p>
+                   </div >
+                  </div>
+
+              <div class="action">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-info dropdown-action"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu p-1">
+                    <li class="item-btn mb-1">
+                      <a
+                        onclick="openEditModal('{{playerDeatail._id}}')"
+                        class="btn btn-warning read-btn w-100"
+                        data-bs-toggle="modal"
+                        data-bs-target="#updateModalPlayer"
+                      >
+                        <i class="fa-sharp fa-solid fa-pen"></i>
+                        Edit
+                      </a>
+                    </li>
+                    <li class="item-btn m-0">
+                      <button
+                        data-id="{{playerDeatail._id}}"
+                        type="button"
+                        class="btn btn-danger read-btn w-100"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deletePlayerModal"
+                      >
+                        <i class="fa-sharp fa-solid fa-trash"></i>
+                        Delete
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    {{> footer}}
+    {{> modalUpdatePlayer}}
+    {{> modalDeletePlayer}}
+
+    <script>
+      function openEditModal(playerId) { 
+        $.ajax({
+          url:  '/players' + playerId + '/edit/' + playerId, 
+          method: 'GET', 
+          success: function (data) {
+            $('#edit-player-form').attr('action', '/players' + data.player.id + '/edit/' + data.player.id + '?_method=PUT'); 
+            $('#player-input-name').val(data.player.name);
+            $('#player-input-image').val(data.player.image); 
+            $('#player-input-club').val(data.player.club); 
+            $('#player-input-goals').val(data.player.goals); 
+            $('#player-input-description').val(data.player.description);
+            $('#player-input-position').val(data.player.position);
+            $('#player-input-isCaptain').val(data.player.isCaptain.toString());
+            } 
+          }); 
+      }
+    </script>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    >
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    >
+    </script>
+  </body>
+
+</html>

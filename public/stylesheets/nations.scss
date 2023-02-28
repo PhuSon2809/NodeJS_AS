@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600;700&family=Inter:wght@400;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=PT+Serif:wght@400;700&family=Poppins:wght@200;300;400;500;600;700&family=Raleway:ital,wght@0,100;0,300;0,400;0,500;1,600&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&family=Tiro+Devanagari+Sanskrit&display=swap");
+
+//Fonts
+$font-family-roboto: "Roboto", sans-serif;
+$font-family-inter: "Inter", sans-serif;
+$font-family-segoe: "Segoe UI", sans-serif;
+$font-family-poppin: "Poppin", sans-serif;
+
+//Color
+$white: #ffffff;
+$black: #000000;
+$orange: #ff5527;
+$blue-main: #142978;
+$blue-dark: #102160;
+$blue-light: #e7e9f1;
+
+@mixin flex($align-item, $justify-content, $flex-direction) {
+  display: flex;
+  align-items: $align-item;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: $font-family-poppin;
+}
+
+.nation-title {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 3px 2px 8px #142a788c;
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  .inner {
+    background-color: #142a78c9;
+    border-radius: 10px;
+
+    h1 {
+      line-height: 44px;
+      font-size: 45px;
+      font-weight: 900;
+      color: $white;
+    }
+  }
+}
+
+.add-new {
+  font-size: 20px;
+  color: #fff;
+  background-color: #142978;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: #142978 !important;
+    color: #fff !important;
+  }
+}
+
+.nation {
+  .card-nation {
+    .card-nation-content {
+      border: 10px solid $blue-light;
+      border-radius: 5px;
+
+      img {
+        height: 140px;
+        border-radius: 5px;
+      }
+
+      h3 {
+        color: gray;
+        font-weight: 700;
+      }
+    }
+
+    .action {
+      @include flex(flex-end, flex-end, unset);
+      .btn-group {
+        .dropdown-action {
+          border-radius: 99px !important;
+          width: 40px;
+          height: 40px;
+          color: #fff;
+          font-size: 21px;
+          background: $blue-main;
+        }
+
+        .dropdown-menu {
+          min-width: 2rem !important;
+          li {
+            .read-btn {
+              @include flex(center, center, unset);
+              gap: 5px;
+            }
+          }
+        }
+      }
+    }
+
+    transition: all 0.3s linear;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.modal {
+  .modal-dialog {
+    .modal-content {
+      .modal-header {
+        background-color: #142978;
+        .modal-title,
+        .btn-close {
+          color: #fff;
+        }
+      }
+
+      .modal-body {
+        input {
+          overflow: hidden;
+        }
+
+        .message-error {
+          color: red;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
