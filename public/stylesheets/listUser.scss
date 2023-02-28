@@ -146,6 +146,33 @@ html {
   }
 }
 
+.modal {
+  .modal-dialog {
+    .modal-content {
+      .modal-header {
+        background-color: #142978;
+        .modal-title,
+        .btn-close {
+          color: #fff;
+        }
+      }
+
+      .modal-body {
+        input {
+          overflow: hidden;
+        }
+        .form-label {
+          min-width: 100px;
+        }
+
+        .form-select {
+          width: fit-content;
+        }
+      }
+    }
+  }
+}
+
 /* Responsive */
 
 @media (max-width: 767px) {

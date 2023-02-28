@@ -43,7 +43,7 @@
           <div class="row wrap clearfix">
             <!--Avatar -->
             <div class="col-sm-4 col-xs-12 avatar">
-              <img src="http://www.placehold.it/300x200&text=Avatar" alt="" />
+              <img src="/images/user.png" alt="" />
             </div>
   
             <div class="col-sm-8 col-xs-12">
@@ -72,13 +72,28 @@
             </div>
           </div>
         </div>
-          
        </div >
       </div>
     </div>
 
     {{> footer}}
     {{> modalUpdateUser}}
+
+    <script>
+      function openEditModal(userId) { 
+        $.ajax({
+          url: '/users/infor/edit/' + userId, 
+          method: 'GET', 
+          success: function (data) {
+            $('#edit-user-form').attr('action', '/users/infor/edit/' + data.user.id + '?_method=PUT'); 
+            $('#user-input-userName').val(data.user.username);
+            $('#user-input-fullName').val(data.user.fullName);
+            $('#user-input-YOB').val(data.user.YOB); 
+            $('#user-input-image').val(data.user.image); 
+            } 
+          }); 
+      }
+    </script>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script
@@ -94,6 +109,13 @@
       crossorigin="anonymous"
     >
     </script>
+
+     <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
   </body>
 
 </html>

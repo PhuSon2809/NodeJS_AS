@@ -139,6 +139,8 @@ html {
   font-size: 19px;
   background: #ffffff;
   margin-right: 5px;
+  outline: none;
+  border: none;
 }
 .player .player-content-list .box-content-action .action .btn-group .dropdown-action {
   border-radius: 99px !important;
@@ -147,6 +149,8 @@ html {
   color: #000;
   font-size: 21px;
   background: #ffffff;
+  outline: none;
+  border: none;
 }
 .player .player-content-list .box-content-action .action .btn-group .dropdown-menu {
   min-width: 2rem !important;

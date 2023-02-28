@@ -12,6 +12,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      default: "/images/user.png",
+    },
     fullName: {
       type: String,
       required: true,

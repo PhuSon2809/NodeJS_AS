@@ -95,6 +95,33 @@ class userController {
   userInfor(req, res, next) {
     res.render("userInfor");
   }
+
+  getForFormEdit(req, res, next) {
+    const userId = req.params.userId;
+    Users.findById(userId).then((user) => {
+      res.json({
+        user: {
+          id: user._id,
+          username: user.username,
+          fullName: user.fullName,
+          YOB: user.YOB,
+          image: user.image,
+        },
+      });
+    });
+  }
+
+  update(req, res, next) {
+    const userId = req.params.userId;
+    if (!userId) {
+      return next(new ErrorHandler("Not found user!", 404));
+    }
+    Users.findByIdAndUpdate(userId, req.body, { new: true })
+      .then((user) => {
+        res.redirect("/users/infor");
+      })
+      .catch(next);
+  }
 }
 
 module.exports = new userController();

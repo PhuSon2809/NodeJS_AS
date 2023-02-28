@@ -109,6 +109,24 @@ html {
   text-align: right;
 }
 
+.modal .modal-dialog .modal-content .modal-header {
+  background-color: #142978;
+}
+.modal .modal-dialog .modal-content .modal-header .modal-title,
+.modal .modal-dialog .modal-content .modal-header .btn-close {
+  color: #fff;
+}
+.modal .modal-dialog .modal-content .modal-body input {
+  overflow: hidden;
+}
+.modal .modal-dialog .modal-content .modal-body .form-label {
+  min-width: 100px;
+}
+.modal .modal-dialog .modal-content .modal-body .form-select {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 /* Responsive */
 @media (max-width: 767px) {
   .table-wrapper:before {
