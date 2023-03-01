@@ -65,7 +65,7 @@ html {
   overflow: hidden;
   box-shadow: 4px 4px 10px rgba(20, 42, 120, 0.3254901961);
 }
-.player .player-content-list:hover img {
+.player .player-content-list:hover .player {
   transform: scale(1.1);
 }
 .player .player-content-list .img-box {
@@ -74,15 +74,17 @@ html {
   justify-content: center;
   flex-direction: unset;
   width: 100%;
+  position: relative;
 }
-.player .player-content-list .img-box img {
+.player .player-content-list .img-box .player {
   height: 280px;
   transition: all 0.3s ease-in-out;
 }
-.player .player-content-list .img-box .background {
-  height: 300px;
-  width: 250px;
-  background-color: #e7e9f1;
+.player .player-content-list .img-box .nation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
 }
 .player .player-content-list .box-content-action {
   display: flex;
