@@ -40,13 +40,14 @@ html {
   text-align: center;
   padding: 8px;
 }
-.fl-table td:nth-child(1),
-.fl-table th:nth-child(1) {
-  width: 20px;
-}
 .fl-table td {
   border-right: 1px solid #f8f8f8;
   font-size: 14px;
+}
+.fl-table td img {
+  height: 45px;
+  width: 45px;
+  border-radius: 99px;
 }
 .fl-table thead th {
   color: #ffffff;

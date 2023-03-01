@@ -42,7 +42,7 @@
             <table class="fl-table">
                 <thead>
                 <tr>
-                    <th>No</th>
+                    <th>Avatar</th>
                     <th>Username</th>
                     <th>Full name</th>
                     <th>Year of birth</th>
@@ -51,7 +51,7 @@
                 <tbody>
                   {{#each users}}
                   <tr>
-                      <td>1</td>
+                      <td><img src={{this.image}} alt={{this.username}}/></td>
                       <td>{{this.username}}</td>
                       <td>{{this.fullName}}</td>
                       <td>{{this.YOB}}</td>
