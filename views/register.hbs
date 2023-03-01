@@ -1,7 +1,7 @@
 <html lang="en">
 
   <head>
-    <title>Title</title>
+    <title>{{title}}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -43,42 +43,54 @@
       </h1>
       <div class="box-input">
         <h2>Register</h2>
-        <form method="post">
-          <div class="field">
-            <i class="fa-solid fa-user"></i>
-            <input
-              class="input"
-              name="username"
-              type="text"
-              placeholder="Username"
-            />
+        <form method="post" class="register-form">
+          <div>
+            <div class="field">
+              <i class="fa-solid fa-user"></i>
+              <input
+                class="input"
+                name="username"
+                type="text"
+                placeholder="Username"
+              />
+            </div>
+            <p class="message-error"></p>
           </div>
-          <div class="field">
-            <i class="fa-solid fa-lock"></i>
-            <input
-              class="input is-success"
-              name="password"
-              type="password"
-              placeholder="Password"
-            />
+          <div>
+            <div class="field">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                class="input is-success"
+                name="password"
+                type="password"
+                placeholder="Password"
+              />
+            </div>
+            <p class="message-error"></p>
           </div>
-          <div class="field">
-            <i class="fa-solid fa-file-signature"></i>
-            <input
-              class="input is-success"
-              name="fullName"
-              type="text"
-              placeholder="Name"
-            />
+          <div>
+            <div class="field">
+              <i class="fa-solid fa-file-signature"></i>
+              <input
+                class="input is-success"
+                name="fullName"
+                type="text"
+                placeholder="Name"
+              />
+            </div>
+            <p class="message-error"></p>
           </div>
-          <div class="field">
-            <i class="fa-regular fa-calendar"></i>
-            <input
-              class="input is-success"
-              name="YOB"
-              type="number"
-              placeholder="Year of birth"
-            />
+          <div>
+            <div class="field">
+              <i class="fa-regular fa-calendar"></i>
+              <input
+                class="input is-success"
+                name="YOB"
+                type="number"
+                placeholder="Year of birth"
+              />
+            </div>
+            <p class="message-error"></p>
           </div>
           <div class="control">
             <button type="submit" class="btn login-btn">Register</button>
@@ -88,17 +100,66 @@
           <a href="/users/login">Sign in</a>
         </p>
       </div>
-
-      {{!-- <footer>
-        {{#if (differ (typeOf errors) "undefined")}}
-          {{#each errors}}
-            <div class="alert alert-warning alert-dismissible" role="alert">
-              {{this.msg}}
-            </div>
-          {{/each}}
-        {{/if}}
-      </footer> --}}
+      {{#if errors}}
+        {{#each errors}}
+          <div class="alert alert-warning" role="alert">
+            {{this.msg}}
+          </div>
+        {{/each}}
+      {{/if}}
     </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.querySelector(".register-form");
+      const usernameInput = form.querySelector("input[name='username']");
+      const passwordInput = form.querySelector("input[name='password']");
+      const fullnameInput = form.querySelector("input[name='fullName']");
+      const yobInput = form.querySelector("input[name='YOB']");
+      const errorTags = form.querySelectorAll(".message-error");
+      const errMsg = document.querySelector('.error');
+
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const usernameValue = usernameInput.value.trim();
+        const passwordValue = passwordInput.value.trim();
+        const fullnameValue = fullnameInput.value.trim();
+        const yobValue = yobInput.value.trim();
+
+        if (!usernameValue) {
+          errorTags[0].textContent = "Please enter user name.";
+        } else {
+          errorTags[0].textContent = "";
+        }
+
+        if (!passwordValue) {
+          errorTags[1].textContent = "Please enter password.";
+        } else {
+          errorTags[1].textContent = "";
+        }
+
+        if (!fullnameValue) {
+          errorTags[2].textContent = "Please enter full name.";
+        } else {
+          errorTags[2].textContent = "";
+        }
+
+        if (!yobValue) {
+          errorTags[3].textContent = "Please enter year of birth.";
+        } else {
+          errorTags[3].textContent = "";
+        }
+
+        if (errMsg) {
+          event.preventDefault();
+        }
+
+        if (usernameValue && passwordValue && fullnameValue && yobValue) {
+          form.submit();
+        }
+      });
+    });
+  </script>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script

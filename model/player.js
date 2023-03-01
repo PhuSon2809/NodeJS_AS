@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const Schema = mongoose.Schema;
 
@@ -13,6 +14,7 @@ const playerSchema = new Schema(
       type: String,
       require: [true, "Player must have a image!"],
     },
+    slug: String,
     club: {
       type: String,
       require: [true, "Player must have a club!"],
@@ -33,11 +35,21 @@ const playerSchema = new Schema(
       type: Boolean,
       require: [true, "Player must have a isCaptain!"],
     },
+    // nation: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "nations",
+    //   require: true,
+    // },
   },
   {
     timestamps: true,
   }
 );
+
+playerSchema.pre("save", function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
+});
 
 var Players = mongoose.model("players", playerSchema);
 

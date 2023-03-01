@@ -42,6 +42,7 @@
     </section>
 
     {{! Button modal }}
+    {{#if (isTrue user.isAdmin)}}
     <div class="container">
       <button
         type="button"
@@ -53,6 +54,7 @@
         Add new player
       </button>
     </div>
+    {{/if}}
 
     {{! List Players }}
     <section class="player mt-0 mt-sm-3 mt-md-5">
@@ -93,10 +95,11 @@
                   </div>
 
                   <div class="action">
-                    <a href="/players/{{this._id}}" class="btn detail-btn" >
+                    <a href="/players/{{this.slug}}" class="btn detail-btn" >
                       <i class="fa-regular fa-eye"></i>
                     </a>
-                    
+
+                    {{#if (isTrue this.user.isAdmin)}}
                     <div class="btn-group">
                       <button
                         type="button"
@@ -132,6 +135,8 @@
                         </li>
                       </ul>
                     </div>
+                    {{/if}}
+
                   </div>
                 </div>
               </div>

@@ -6,11 +6,13 @@ var logger = require("morgan");
 const mongoose = require("mongoose");
 const hbs = require("hbs");
 const methodOverride = require("method-override");
-const session = require("express-session");
 const passport = require("passport");
+const session = require("express-session");
 const flash = require("connect-flash");
+const dotenv = require("dotenv");
 
-require("./config/passport")(passport);
+require("./middelware/passport")(passport);
+require('dotenv').config({ path: path.resolve(__dirname, 'config', 'config.env')});
 
 var indexRouter = require("./routes/index");
 const userRouter = require("./routes/userRouter");
@@ -54,17 +56,17 @@ hbs.registerPartials(__dirname + "/views/patials");
 hbs.registerHelper("stringify", function (obj) {
   return JSON.stringify(obj);
 });
-hbs.registerHelper("typeOf", function (obj) {
-  return typeof obj;
-});
 hbs.registerHelper("eq", function (a, b) {
   return a === b;
 });
-hbs.registerHelper("differ", function (a, b) {
-  return a != b;
-});
 hbs.registerHelper("toString", function (a) {
   return a.toString();
+});
+hbs.registerHelper("isNotEmpty", function (a) {
+  return a && a.length > 0;
+});
+hbs.registerHelper("isTrue", function (a) {
+  return a === true;
 });
 
 app.set("views", path.join(__dirname, "views"));

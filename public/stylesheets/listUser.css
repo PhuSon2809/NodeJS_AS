@@ -126,6 +126,11 @@ html {
   width: -moz-fit-content;
   width: fit-content;
 }
+.modal .modal-dialog .modal-content .modal-body .message-error {
+  color: red;
+  margin-left: 5px;
+  margin-bottom: 0;
+}
 
 /* Responsive */
 @media (max-width: 767px) {

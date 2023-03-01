@@ -41,7 +41,7 @@ html {
 
   .title {
     @include flex(center, center, row);
-    gap:15px;
+    gap: 15px;
     font-weight: 700;
     text-transform: uppercase;
     color: $blue-main;
@@ -65,6 +65,22 @@ html {
       @include flex(center, center, column);
       gap: 15px;
 
+      .success {
+        color: white;
+        margin: 0;
+        background-color: rgb(3, 204, 3);
+        padding: 5px 20px;
+        border-radius: 10px
+      }
+
+      .error {
+        color: white;
+        margin: 0;
+        background-color: red;
+        padding: 5px 20px;
+        border-radius: 10px
+      }
+
       .field {
         @include flex(center, center, row);
         gap: 10px;
@@ -83,9 +99,15 @@ html {
         }
       }
 
-      .control{
+      .message-error{
+        color: red;
+        margin-left: 5px;
+        margin-bottom: 0;
+      }
+
+      .control {
         width: 100%;
-        .login-btn{
+        .login-btn {
           width: 100%;
           background-color: $blue-main;
           color: $white;
@@ -93,8 +115,8 @@ html {
       }
     }
 
-    p{
-      a{
+    p {
+      a {
         color: #142978;
         cursor: pointer;
         text-decoration: none;

@@ -1,7 +1,7 @@
 <html lang="en">
 
   <head>
-    <title>Title</title>
+    <title>{{title}}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -43,33 +43,94 @@
       </h1>
       <div class="box-input">
         <h2>Login</h2>
-        <form method="post">
-          <div class="field">
-           <i class="fa-solid fa-user"></i>
-            <input
-              class="input"
-              name="username"
-              type="text"
-              placeholder="username"
-            />
+        <form action="/users/login" class="login-form" method="post">
+          <div>
+            <div class="field">
+             <i class="fa-solid fa-user"></i>
+              <input
+                class="input"
+                name="username"
+                type="text"
+                placeholder="username"
+              />
+            </div>
+            <p class="message-error"></p>
           </div>
-          <div class="field">
-            <i class="fa-solid fa-lock"></i>
-            <input
-              class="input"
-              name="password"
-              type="password"
-              placeholder="password"
-            />
+          <div>
+            <div class="field">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                class="input"
+                name="password"
+                type="password"
+                placeholder="password"
+              />
+            </div>
+            <p class="message-error"></p>
           </div>
 
+           {{#if (isNotEmpty success_msg)}}
+              <p class="success">{{success_msg}}<p >
+            {{/if}}
+            {{#if (isNotEmpty error_msg)}}
+              <div class="error">
+                {{error_msg}}
+              </div>
+            {{/if}}
+            {{#if (isNotEmpty err_msg)}}
+              <div class="err">
+                {{err_msg}}
+              </div>
+            {{/if}}
+            {{#if (isNotEmpty message)}}
+              <div class="message">
+                {{message}}
+              </div>
+            {{/if}}
+
           <div class="control">
-            <button class="btn login-btn">Login</button>
+            <button type="submit" class="btn login-btn">Login</button>
           </div>
         </form>
         <p>Don’t have an account? <a href="/users/register">Sign up</a></p>
       </div>
     </div>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector(".login-form");
+    const usernameInput = form.querySelector("input[name='username']");
+    const passwordInput = form.querySelector("input[name='password']");
+    const errorTags = form.querySelectorAll(".message-error");
+    const errMsg = document.querySelector('.error');
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const usernameValue = usernameInput.value.trim();
+      const passwordValue = passwordInput.value.trim();
+
+      if (!usernameValue) {
+        errorTags[0].textContent = "Please enter user name.";
+      } else {
+        errorTags[0].textContent = "";
+      }
+
+      if (!passwordValue) {
+        errorTags[1].textContent = "Please enter password.";
+      } else {
+        errorTags[1].textContent = "";
+      }
+
+      if (errMsg) {
+        event.preventDefault();
+      }
+
+      if (usernameValue && passwordValue) {
+        form.submit();
+      }
+    });
+  });
+  </script>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script
@@ -84,6 +145,12 @@
       crossorigin="anonymous"
     >
     </script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
   </body>
 
 </html>

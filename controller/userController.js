@@ -1,15 +1,18 @@
 const bcrypt = require("bcrypt");
 var passport = require("passport");
 const Users = require("../model/users");
+const sendToken = require("../config/jwttoken");
+require("../middelware/passport")(passport);
 
 class userController {
-  signup(req, res, next) {
-    res.render("register");
+  signupPage(req, res, next) {
+    res.render("register", {
+      title: "Register page",
+    });
   }
 
-  register(req, res, next) {
+  async register(req, res, next) {
     const { username, password, fullName, YOB } = req.body;
-    console.log(username, password);
     let errors = [];
     if (!username || !password || !fullName || !YOB) {
       errors.push({ msg: "Please enter all fields" });
@@ -50,25 +53,41 @@ class userController {
             newUser
               .save()
               .then((user) => {
+                sendToken(user, 200, res);
                 res.redirect("/users/login");
               })
-              .catch(next);
+              .catch((err) => {
+                errors.push("Fail to create user");
+                res.render("register", {
+                  errors,
+                });
+              });
           });
         }
       });
     }
   }
 
-  login(req, res, next) {
-    res.render("login");
+  signinPage(req, res, next) {
+    if (req.isAuthenticated()) {
+      res.redirect("/");
+    } else {
+      res.render("login", {
+        title: "Login page",
+      });
+    }
   }
 
   signin(req, res, next) {
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/users/login/",
-      failureFlash: true,
-    })(req, res, next);
+    console.log(req);
+    var token = authenticate.getToken({ _id: req.user._id });
+    res.statusCode = 200;
+    res.setHeader("Authorization", token);
+    res.json({
+      success: true,
+      token: token,
+      status: "You are successfully logged in!",
+    });
   }
 
   signout(req, res, next) {
@@ -84,6 +103,8 @@ class userController {
   listUser(req, res, next) {
     Users.find({})
       .then((users) => {
+        res.locals.isAuthenticated = req.isAuthenticated();
+        res.locals.user = req.user;
         res.render("listUser", {
           title: "List user",
           users: users,
@@ -93,7 +114,15 @@ class userController {
   }
 
   userInfor(req, res, next) {
-    res.render("userInfor");
+    const userId = req.params.userId;
+    Users.findById(userId).then((user) => {
+      res.locals.isAuthenticated = req.isAuthenticated();
+      res.locals.user = req.user;
+      res.render("userInfor", {
+        title: "User Information - World Cup 2022",
+        user: user,
+      });
+    });
   }
 
   getForFormEdit(req, res, next) {
@@ -118,7 +147,7 @@ class userController {
     }
     Users.findByIdAndUpdate(userId, req.body, { new: true })
       .then((user) => {
-        res.redirect("/users/infor");
+        res.redirect(`/users/infor/${userId}`);
       })
       .catch(next);
   }

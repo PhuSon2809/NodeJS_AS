@@ -3,9 +3,14 @@ const Players = require("../model/player");
 
 class mainController {
   main(req, res, next) {
-    Promise.all([Nations.find({}).limit(4), Players.find({}).limit(4)])
+    Promise.all([
+      Nations.find({}).limit(4),
+      Players.find({ isCaptain: true }),
+    ])
       .then(([nations, players]) => {
-        res.render("dashboard", {
+        res.locals.isAuthenticated = req.isAuthenticated();
+        res.locals.user = req.user;
+        res.render("index", {
           title: "Home page - World Cup 2022",
           nations: nations,
           players: players,

@@ -4,6 +4,8 @@ class nationController {
   nations(req, res, next) {
     Nations.find({})
       .then((nations) => {
+        res.locals.isAuthenticated = req.isAuthenticated();
+        res.locals.user = req.user;
         res.render("nations", {
           title: "Nation page - World Cup 2022",
           nations: nations,
@@ -66,7 +68,9 @@ class nationController {
     if (!nation) {
       return next(new ErrorHandler("Not found nation", 404));
     }
-    nation.remove().then(() => res.redirect("/nations"));
+    nation.remove().then(() => {
+      res.redirect("/nations");
+    });
   }
 }
 

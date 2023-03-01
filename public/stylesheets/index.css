@@ -73,6 +73,9 @@ html {
   outline: none;
   border: none;
 }
+.navbar .navbar-collapse .btn-group .btn img {
+  border-radius: 99px;
+}
 .navbar .navbar-collapse .btn-group .dropdown-menu {
   min-width: 2rem !important;
   padding: 5px !important;
@@ -248,7 +251,7 @@ html {
   color: #142978;
   font-weight: 800;
   letter-spacing: 0.8px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .player .player-content-list .box-content-action .content .line {
   justify-content: space-between;
@@ -261,7 +264,11 @@ html {
   font-weight: bold;
 }
 .player .player-content-list .box-content-action .content .line-goal {
-  gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: unset;
+  width: 100%;
 }
 .player .player-content-list .box-content-action .content .line-goal label {
   display: flex;

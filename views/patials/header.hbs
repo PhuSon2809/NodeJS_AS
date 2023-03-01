@@ -28,34 +28,41 @@
         <a class="nav-link" href="/players">Player</a>
         <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/listuser">List User</a>
-      </li>
+      {{#if (isTrue user.isAdmin)}}
+        <li class="nav-item">
+          <a class="nav-link" href="/users/listuser">List User</a>
+        </li>
+      {{/if}}
     </ul>
-    <button class="login-btn">Login</button>
     
-
-    <div class="btn-group">
-      <button
-        type="button"
-        class="btn"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-            <img src="https://lh3.googleusercontent.com/a/AGNmyxYSarFcD10L685F83jHlIatGXUtG6NX-E7qNtkb=s96-c-br100-rg-mo" width="40" height="40"/>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end p-1">
-        <li class="item-btn mb-1">
-          <a href="/users/infor">
-            <i class="fa-regular fa-user"></i>Information
-          </a>
-        </li>
-        <li class="item-btn mb-1">
-          <a href="/users/logout">
-            <i class="fa-solid fa-right-to-bracket"></i>Logout
-          </a>
-        </li>
-      </ul>
-    </div>
+    
+    {{#if isAuthenticated }}
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img class="avatar" src={{user.image}} width="45" height="45"/>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end p-1">
+          <li class="item-btn mb-1">
+            <a href="/users/infor/{{user._id}}">
+              <i class="fa-regular fa-user"></i>Information
+            </a>
+          </li>
+          <li class="item-btn mb-1">
+            <a href="/users/logout">
+              <i class="fa-solid fa-right-to-bracket"></i>Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    {{else}}
+      <a href="/users/login">  
+        <button class="login-btn">Login</button>
+      </a>
+    {{/if}}
   </div>
 </nav>

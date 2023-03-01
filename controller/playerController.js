@@ -24,6 +24,8 @@ class playerController {
   players(req, res, next) {
     Players.find({})
       .then((players) => {
+        res.locals.isAuthenticated = req.isAuthenticated();
+        res.locals.user = req.user;
         res.render("players", {
           title: "Player page - World Cup 2022",
           players: players,
@@ -35,12 +37,14 @@ class playerController {
   }
 
   playerDetail(req, res, next) {
-    const playerId = req.params.playerId;
-    if (!playerId) {
+    const slug = req.params.slug;
+    if (!slug) {
       return next(new Error("Player not found"));
     }
-    Players.findById(playerId)
+    Players.findOne({ slug })
       .then((player) => {
+        res.locals.isAuthenticated = req.isAuthenticated();
+        res.locals.user = req.user;
         res.status(200).render("playerDetail", {
           title: `${player.name} - WC 2022`,
           playerDeatail: player,
@@ -54,7 +58,7 @@ class playerController {
     console.log(req.body);
     player
       .save()
-      .then(() => res.redirect("/players"))
+      .then(() => res.status(201).redirect("/players"))
       .catch((err) => {});
   }
 

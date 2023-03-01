@@ -101,6 +101,10 @@ html {
       .btn {
         outline: none;
         border: none;
+
+        img {
+          border-radius: 99px;
+        }
       }
 
       .dropdown-menu {
@@ -117,7 +121,7 @@ html {
             color: #142978;
             font-size: 18px;
 
-            &:hover{
+            &:hover {
               background: #e7e9f1;
             }
           }
@@ -305,7 +309,7 @@ html {
           color: #142978;
           font-weight: 800;
           letter-spacing: 0.8px;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
         }
 
         .line {
@@ -321,7 +325,9 @@ html {
         }
 
         .line-goal {
-          gap: 20px;
+          @include flex(center, center, unset);
+          width: 100%;
+
           label {
             @include flex(center, center, row);
             gap: 3px;

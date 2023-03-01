@@ -1,7 +1,7 @@
 <html lang="en">
 
   <head>
-    <title>Title</title>
+    <title>{{title}}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -43,7 +43,7 @@
           <div class="row wrap clearfix">
             <!--Avatar -->
             <div class="col-sm-4 col-xs-12 avatar">
-              <img src="/images/user.png" alt="" />
+              <img src={{user.image}} alt="" />
             </div>
   
             <div class="col-sm-8 col-xs-12">
@@ -51,15 +51,15 @@
                 <h2>Label MacMule</h2>
                   <div class="line d-flex">
                       <span class="tag">Name:</span>
-                      <span>Tran Phu Son</span>
+                      <span>{{user.fullName}}</span>
                     </div>
                   <div class="line d-flex">
                     <span class="tag">Year of bidth:</span>
-                    <span>2001</span>
+                    <span>{{user.YOB}}</span>
                   </div>
                   <div class="box-action">
                     <a
-                      {{!-- onclick="openEditModal('{{this._id}}')" --}}
+                      onclick="openEditModal('{{user._id}}')"
                       class="btn btn-warning edit-btn mt-4"
                       data-bs-toggle="modal"
                       data-bs-target="#updateModalUser"
