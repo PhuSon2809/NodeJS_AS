@@ -38,8 +38,11 @@ const playerSchema = new Schema(
     nation: {
       type: Schema.Types.ObjectId,
       ref: "nations",
-      require: true,
     },
+    // nationImage: {
+    //   type: String,
+    //   default: "/images/user.png",
+    // },
   },
   {
     timestamps: true,

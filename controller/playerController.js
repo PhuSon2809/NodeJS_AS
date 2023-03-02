@@ -1,3 +1,4 @@
+const slugify  = require("slugify");
 const Nations = require("../model/nation");
 const Players = require("../model/player");
 
@@ -59,13 +60,58 @@ class playerController {
       .catch(next);
   }
 
-  create(req, res, next) {
-    const newPlayer = new Players(req.body);
-    console.log(req.body);
-    newPlayer
-      .save()
-      .then(() => res.status(201).redirect("/players"))
-      .catch((err) => {});
+  // create(req, res, next) {
+  //   const newPlayer = new Players(req.body);
+  //   console.log(req.body);
+  //   newPlayer
+  //     .save()
+  //     .then(() => res.status(201).redirect("/players"))
+  //     .catch((err) => {});
+  // }
+
+  async create(req, res, next) {
+    const {
+      name,
+      image,
+      club,
+      description,
+      position,
+      goals,
+      isCaptain,
+      nation,
+    } = req.body;
+
+    try {
+      const player = await Players.create({
+        name,
+        image,
+        club,
+        description,
+        position,
+        goals,
+        isCaptain,
+        nation,
+        slug: slugify(name, { lower: true }),
+      });
+
+      // populate the 'nations' field with the corresponding nation document
+      await player.populate("nation");
+
+      // retrieve the nation's image URL from the document
+      // const nationImage = player.nation.image;
+
+      // add the nation's image URL to the player object
+      // player.nationImage = nationImage;
+
+      await player.save();
+
+      res.redirect("/players");
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        // .send({ success: false, message: "Failed to create player" });
+    }
   }
 
   getForFormEdit(req, res, next) {
