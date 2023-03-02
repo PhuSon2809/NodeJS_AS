@@ -5,7 +5,7 @@ class mainController {
   main(req, res, next) {
     Promise.all([
       Nations.find({}).limit(4),
-      Players.find({ isCaptain: true }),
+      Players.find({ isCaptain: true }).populate("nation"),
     ])
       .then(([nations, players]) => {
         res.locals.isAuthenticated = req.isAuthenticated();
