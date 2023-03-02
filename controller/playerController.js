@@ -23,7 +23,7 @@ let captainData = [
 
 class playerController {
   players(req, res, next) {
-    Promise.all([Nations.find({}), Players.find({})])
+    Promise.all([Nations.find({}), Players.find({}).populate("nation")])
       .then(([nations, players]) => {
         players.forEach((player) => {
           player.isAdmin = req.isAuthenticated() && req.user.isAdmin;
@@ -47,6 +47,7 @@ class playerController {
       return next(new Error("Player not found"));
     }
     Players.findOne({ slug })
+      .populate("nation")
       .then((player) => {
         res.locals.isAuthenticated = req.isAuthenticated();
         res.locals.user = req.user;
@@ -59,9 +60,9 @@ class playerController {
   }
 
   create(req, res, next) {
-    const player = new Players(req.body);
+    const newPlayer = new Players(req.body);
     console.log(req.body);
-    player
+    newPlayer
       .save()
       .then(() => res.status(201).redirect("/players"))
       .catch((err) => {});
@@ -80,6 +81,7 @@ class playerController {
           description: player.description,
           position: player.position,
           isCaptain: player.isCaptain,
+          nation: player.nation,
         },
       });
     });

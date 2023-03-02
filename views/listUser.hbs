@@ -46,6 +46,7 @@
                     <th>Username</th>
                     <th>Full name</th>
                     <th>Year of birth</th>
+                    <th>Role</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,6 +56,11 @@
                       <td>{{this.username}}</td>
                       <td>{{this.fullName}}</td>
                       <td>{{this.YOB}}</td>
+                      {{#if (isTrue this.isAdmin)}}
+                        <td>Admin</td>
+                      {{else}}
+                        <td>User</td>
+                      {{/if}}
                   </tr>
                 {{/each}}
                 <tbody>

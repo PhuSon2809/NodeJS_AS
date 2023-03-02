@@ -35,16 +35,25 @@ const playerSchema = new Schema(
       type: Boolean,
       require: [true, "Player must have a isCaptain!"],
     },
-    // nation: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "nations",
-    //   require: true,
-    // },
+    nation: {
+      type: Schema.Types.ObjectId,
+      ref: "nations",
+      require: true,
+    },
   },
   {
     timestamps: true,
   }
 );
+
+// playerSchema.pre(/^find/, function (next) {
+//   this.populate({
+//     path: "nation",
+//     select: "image",
+//   });
+
+//   next();
+// });
 
 playerSchema.pre("save", function (next) {
   this.slug = slugify(this.name, { lower: true });

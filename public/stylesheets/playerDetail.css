@@ -48,6 +48,9 @@ html {
 .player-detail .card-player .box-content-action .content {
   color: #fff;
 }
+.player-detail .card-player .box-content-action .content .flag {
+  height: 120px;
+}
 .player-detail .card-player .box-content-action .content .name {
   font-weight: 800;
   letter-spacing: 0.8px;

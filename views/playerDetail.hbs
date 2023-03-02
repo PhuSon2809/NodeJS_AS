@@ -46,6 +46,7 @@
           <div class="col-md-7 pl-3">
             <div class="box-content-action">
                <div class="content">
+                 <img class="flag" src={{playerDeatail.nation.image}} alt="banner" />
                     <h1 class="name">{{playerDeatail.name}}</h1>
                     <div class="line d-flex">
                       <span class="tag">Club:</span>
@@ -72,45 +73,6 @@
                       </p>
                    </div >
                   </div>
-
-              <div class="action">
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-info dropdown-action"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                  </button>
-                  <ul class="dropdown-menu p-1">
-                    <li class="item-btn mb-1">
-                      <a
-                        onclick="openEditModal('{{playerDeatail._id}}')"
-                        class="btn btn-warning read-btn w-100"
-                        data-bs-toggle="modal"
-                        data-bs-target="#updateModalPlayer"
-                      >
-                        <i class="fa-sharp fa-solid fa-pen"></i>
-                        Edit
-                      </a>
-                    </li>
-                    <li class="item-btn m-0">
-                      <button
-                        data-id="{{playerDeatail._id}}"
-                        type="button"
-                        class="btn btn-danger read-btn w-100"
-                        data-bs-toggle="modal"
-                        data-bs-target="#deletePlayerModal"
-                      >
-                        <i class="fa-sharp fa-solid fa-trash"></i>
-                        Delete
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
             </div>
           </div>
         </div>
