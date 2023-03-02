@@ -1,3 +1,4 @@
+const Nations = require("../model/nation");
 const Players = require("../model/player");
 
 let positionData = [
@@ -22,13 +23,17 @@ let captainData = [
 
 class playerController {
   players(req, res, next) {
-    Players.find({})
-      .then((players) => {
+    Promise.all([Nations.find({}), Players.find({})])
+      .then(([nations, players]) => {
+        players.forEach((player) => {
+          player.isAdmin = req.isAuthenticated() && req.user.isAdmin;
+        });
         res.locals.isAuthenticated = req.isAuthenticated();
         res.locals.user = req.user;
         res.render("players", {
           title: "Player page - World Cup 2022",
           players: players,
+          nations: nations,
           positionList: positionData,
           isCaptain: captainData,
         });

@@ -4,6 +4,9 @@ class nationController {
   nations(req, res, next) {
     Nations.find({})
       .then((nations) => {
+        nations.forEach((nation) => {
+          nation.isAdmin = req.isAuthenticated() && req.user.isAdmin;
+        });
         res.locals.isAuthenticated = req.isAuthenticated();
         res.locals.user = req.user;
         res.render("nations", {
