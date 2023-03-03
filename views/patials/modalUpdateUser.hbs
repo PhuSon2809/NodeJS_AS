@@ -20,6 +20,7 @@
               type="text"
               class="form-control"
               placeholder="userName"
+              disabled="true"
             />
             <p class="message-error"></p>
           </div>
@@ -71,48 +72,22 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector("#edit-user-form");
-    const usernameInput = form.querySelector("input[name='userName']");
-    const nameInput = form.querySelector("input[name='fullName']");
-    const imageInput = form.querySelector("input[name='image']");
-    const yearInput = form.querySelector("input[name='YOB']");
-    const errorTags = form.querySelectorAll(".message-error");
-
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      const usernameValue = usernameInput.value.trim();
-      const nameValue = nameInput.value.trim();
-      const yearValue = yearInput.value.trim();
-      const imageValue = imageInput.value.trim();
-
-      if (!usernameValue) {
-        errorTags[0].textContent = "Please enter user name.";
-      } else {
-        errorTags[0].textContent = "";
-      }
-
-      if (!nameValue) {
-        errorTags[1].textContent = "Please enter full name.";
-      } else {
-        errorTags[1].textContent = "";
-      }
-
-      if (!yearValue) {
-        errorTags[2].textContent = "Please enter year of birth.";
-      } else {
-        errorTags[2].textContent = "";
-      }
-
-      if (!imageValue) {
-        errorTags[3].textContent = "Please enter an image URL.";
-      } else {
-        errorTags[3].textContent = "";
-      }
-
-      if (nameValue && yearValue && imageValue) {
-        form.submit();
-      }
-    });
-  });
+  document.addEventListener("DOMContentLoaded", function() { const form =
+  document.querySelector("#edit-user-form"); const usernameInput =
+  form.querySelector("input[name='userName']"); const nameInput =
+  form.querySelector("input[name='fullName']"); const imageInput =
+  form.querySelector("input[name='image']"); const yearInput =
+  form.querySelector("input[name='YOB']"); const errorTags =
+  form.querySelectorAll(".message-error"); form.addEventListener("submit",
+  function(event) { event.preventDefault(); const usernameValue =
+  usernameInput.value.trim(); const nameValue = nameInput.value.trim(); const
+  yearValue = yearInput.value.trim(); const imageValue =
+  imageInput.value.trim(); if (!usernameValue) { errorTags[0].textContent =
+  "Please enter user name."; } else { errorTags[0].textContent = ""; } if
+  (!nameValue) { errorTags[1].textContent = "Please enter full name."; } else {
+  errorTags[1].textContent = ""; } if (!yearValue) { errorTags[2].textContent =
+  "Please enter year of birth."; } else { errorTags[2].textContent = ""; } if
+  (!imageValue) { errorTags[3].textContent = "Please enter an image URL."; }
+  else { errorTags[3].textContent = ""; } if (nameValue && yearValue &&
+  imageValue) { form.submit(); } }); });
 </script>
