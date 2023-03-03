@@ -41,6 +41,14 @@
       </div>
     </section>
 
+     {{#if errors}}
+        {{#each errors}}
+          <div class="alert alert-warning" role="alert">
+            {{this.msg}}
+          </div>
+        {{/each}}
+      {{/if}}
+
     {{! Button modal }}
     {{#if (isTrue user.isAdmin)}}
     <div class="container">
@@ -53,6 +61,8 @@
         <i class="fa-sharp fa-solid fa-plus"></i>
         Add new player
       </button>
+
+     
     </div>
     {{/if}}
 

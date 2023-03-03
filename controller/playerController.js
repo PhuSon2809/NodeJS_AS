@@ -99,9 +99,72 @@ class playerController {
       res.redirect("/players");
     } catch (error) {
       console.error(error);
-      res.render("error");
+      res.render("faildCreate");
     }
   }
+
+  // async create(req, res, next) {
+  //   try {
+  //     const {
+  //       name,
+  //       image,
+  //       club,
+  //       description,
+  //       position,
+  //       goals,
+  //       isCaptain,
+  //       nation,
+  //     } = req.body;
+  //     let errors = [];
+
+  //     if (errors.length > 0) {
+  //       Promise.all([Nations.find({}), Players.find({}).populate("nation")])
+  //         .then(([nations, players]) => {
+  //           players.forEach((player) => {
+  //             player.isAdmin = req.isAuthenticated() && req.user.isAdmin;
+  //           });
+  //           res.locals.isAuthenticated = req.isAuthenticated();
+  //           res.locals.user = req.user;
+  //           res.render("players", {
+  //             title: "Player page - World Cup 2022",
+  //             players: players,
+  //             nations: nations,
+  //             positionList: positionData,
+  //             isCaptain: captainData,
+  //             errors,
+  //           });
+  //         })
+  //         .catch(next);
+  //     } else {
+  //       await Players.findOne({ name: name }).then((player) => {
+  //         if (player) {
+  //           errors.push({ msg: "Username already exists" });
+  //           res.render("players", {
+  //             errors,
+  //           });
+  //         } else {
+  //           const player = Players.create({
+  //             name,
+  //             image,
+  //             club,
+  //             description,
+  //             position,
+  //             goals,
+  //             isCaptain,
+  //             nation,
+  //             slug: slugify(name, { lower: true }),
+  //           });
+  //           // populate the 'nations' field with the corresponding nation document
+  //           player.populate("nation").save();
+  //           res.redirect("/players");
+  //         }
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     res.render("error");
+  //   }
+  // }
 
   getForFormEdit(req, res, next) {
     const playerId = req.params.playerId;

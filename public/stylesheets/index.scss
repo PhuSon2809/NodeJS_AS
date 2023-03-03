@@ -35,7 +35,7 @@ html {
   width: 100%;
   text-align: center;
 
-  img {
+  .e404 {
     width: 42%;
   }
 
@@ -49,6 +49,7 @@ html {
     border-radius: 3px;
     letter-spacing: 1px;
     transition: 0.4s all linear;
+    margin-top: 20px;
 
     &:hover {
       background: #142978 !important;
