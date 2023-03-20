@@ -58,6 +58,18 @@
           </div>
           <div>
             <div class="field">
+              <i class="fa-solid fa-user"></i>
+              <input
+                class="input"
+                name="email"
+                type="text"
+                placeholder="Email"
+              />
+            </div>
+            <p class="message-error"></p>
+          </div>
+          <div>
+            <div class="field">
               <i class="fa-solid fa-lock"></i>
               <input
                 class="input is-success"
@@ -109,57 +121,65 @@
       {{/if}}
     </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const form = document.querySelector(".register-form");
-      const usernameInput = form.querySelector("input[name='username']");
-      const passwordInput = form.querySelector("input[name='password']");
-      const fullnameInput = form.querySelector("input[name='fullName']");
-      const yobInput = form.querySelector("input[name='YOB']");
-      const errorTags = form.querySelectorAll(".message-error");
-      const errMsg = document.querySelector('.error');
+    <script>
+      document.addEventListener("DOMContentLoaded", function() { 
+        const form = document.querySelector(".register-form"); 
+        const usernameInput = form.querySelector("input[name='username']"); 
+        const emailInput = form.querySelector("input[name='email']"); 
+        const passwordInput = form.querySelector("input[name='password']"); 
+        const fullnameInput = form.querySelector("input[name='fullName']"); 
+        const yobInput = form.querySelector("input[name='YOB']"); 
+        const errorTags = form.querySelectorAll(".message-error"); 
+        const errMsg = document.querySelector('.error'); 
 
-      form.addEventListener("submit", function(event) {
-        event.preventDefault();
-        const usernameValue = usernameInput.value.trim();
-        const passwordValue = passwordInput.value.trim();
-        const fullnameValue = fullnameInput.value.trim();
-        const yobValue = yobInput.value.trim();
+        form.addEventListener("submit", function(event) { 
+          event.preventDefault(); 
+          const usernameValue = usernameInput.value.trim(); 
+          const emailValue = emailInput.value.trim(); 
+          const passwordValue = passwordInput.value.trim(); 
+          const fullnameValue = fullnameInput.value.trim(); 
+          const yobValue = yobInput.value.trim();
 
-        if (!usernameValue) {
-          errorTags[0].textContent = "Please enter user name.";
-        } else {
-          errorTags[0].textContent = "";
-        }
+          if(!usernameValue) { 
+            errorTags[0].textContent = "Please enter user name."; 
+          } else { 
+            errorTags[0].textContent = ""; 
+          } 
 
-        if (!passwordValue) {
-          errorTags[1].textContent = "Please enter password.";
-        } else {
-          errorTags[1].textContent = "";
-        }
+          if(!emailValue) { 
+            errorTags[1].textContent = "Please enter email."; 
+          } else { 
+            errorTags[1].textContent = ""; 
+          } 
 
-        if (!fullnameValue) {
-          errorTags[2].textContent = "Please enter full name.";
-        } else {
-          errorTags[2].textContent = "";
-        }
+          if (!passwordValue) {
+            errorTags[2].textContent = "Please enter password."; 
+          } else {
+            errorTags[2].textContent = ""; 
+          } 
 
-        if (!yobValue) {
-          errorTags[3].textContent = "Please enter year of birth.";
-        } else {
-          errorTags[3].textContent = "";
-        }
+          if (!fullnameValue) {
+            errorTags[3].textContent = "Please enter full name."; 
+          } else {
+            errorTags[3].textContent = ""; 
+          } 
 
-        if (errMsg) {
-          event.preventDefault();
-        }
+          if (!yobValue) {
+            errorTags[4].textContent = "Please enter year of birth."; 
+          } else { 
+            errorTags[4].textContent = ""; 
+          }
 
-        if (usernameValue && passwordValue && fullnameValue && yobValue) {
-          form.submit();
-        }
+          if (errMsg) { 
+            event.preventDefault(); 
+          } 
+            
+          if (usernameValue && passwordValue && fullnameValue && yobValue) { 
+            form.submit(); 
+          } 
+        }); 
       });
-    });
-  </script>
+    </script>
 
     <!-- Bootstrap JavaScript Libraries -->
     <script

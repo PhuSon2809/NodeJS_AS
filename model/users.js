@@ -17,7 +17,8 @@ const userSchema = new Schema(
     },
     image: {
       type: String,
-      default: "/images/user.png",
+      default:
+        "https://lh3.googleusercontent.com/a/AGNmyxbpiHljVqZKKRi5vs6aa1N0XKoYfFFmPr5_iJo8=s96-c-rg-br100",
     },
     fullName: {
       type: String,
@@ -31,6 +32,14 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    email: {
+      type: String,
+      required: true,
+    },
+    otpSecret: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -41,7 +50,7 @@ userSchema.methods.getJWT = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SERECT, {
     expiresIn: process.env.JWT_EXPIRE,
   });
-}
+};
 
 //Compare password
 userSchema.methods.comparePassword = async function (enterPassword) {

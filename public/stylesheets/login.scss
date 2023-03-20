@@ -70,7 +70,7 @@ html {
         margin: 0;
         background-color: rgb(3, 204, 3);
         padding: 5px 20px;
-        border-radius: 10px
+        border-radius: 10px;
       }
 
       .error {
@@ -78,7 +78,7 @@ html {
         margin: 0;
         background-color: red;
         padding: 5px 20px;
-        border-radius: 10px
+        border-radius: 10px;
       }
 
       .field {
@@ -99,7 +99,7 @@ html {
         }
       }
 
-      .message-error{
+      .message-error {
         color: red;
         margin-left: 5px;
         margin-bottom: 0;
@@ -111,6 +111,14 @@ html {
           width: 100%;
           background-color: $blue-main;
           color: $white;
+        }
+      }
+
+      .forgotpassword {
+        width: 100%;
+        text-align: right;
+        a {
+          color: #142978;
         }
       }
     }

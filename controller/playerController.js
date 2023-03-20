@@ -194,7 +194,7 @@ class playerController {
       .then((player) => {
         res.redirect("/players");
       })
-      .catch(next);
+      .catch((next) => res.render("faildUpdate"));
   }
 
   delete(req, res, next) {

@@ -69,27 +69,30 @@
             <p class="message-error"></p>
           </div>
 
-           {{#if (isNotEmpty success_msg)}}
-              <p class="success">{{success_msg}}<p >
-            {{/if}}
-            {{#if (isNotEmpty error_msg)}}
-              <div class="error">
-                {{error_msg}}
-              </div>
-            {{/if}}
-            {{#if (isNotEmpty err_msg)}}
-              <div class="err">
-                {{err_msg}}
-              </div>
-            {{/if}}
-            {{#if (isNotEmpty message)}}
-              <div class="message">
-                {{message}}
-              </div>
-            {{/if}}
+          {{#if (isNotEmpty success_msg)}}
+            <p class="success">{{success_msg}}<p >
+          {{/if}}
+          {{#if (isNotEmpty error_msg)}}
+            <div class="error">
+              {{error_msg}}
+            </div>
+          {{/if}}
+          {{#if (isNotEmpty err_msg)}}
+            <div class="err">
+              {{err_msg}}
+            </div>
+          {{/if}}
+          {{#if (isNotEmpty message)}}
+            <div class="message">
+              {{message}}
+            </div>
+          {{/if}}
 
           <div class="control">
             <button type="submit" class="btn login-btn">Login</button>
+          </div>
+          <div class="forgotpassword">
+            <a href="/users/forgotpassword">Forgot password</a>
           </div>
         </form>
         <p>Don’t have an account? <a href="/users/register">Sign up</a></p>

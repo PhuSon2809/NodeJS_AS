@@ -78,7 +78,9 @@
                 <div class="img-box">
                   <img class="player" src={{this.image}} />
                    {{!-- <img alt="nation" class="nation" src="https://cloudinary.fifa.com/api/v3/picture/flags-sq-4/ARG" /> --}}
+                   {{#if this.nation.image}}
                    <img alt="nation" class="nation" src={{this.nation.image}} />
+                   {{/if}}
                 </div>
 
                 <div class="box-content-action">

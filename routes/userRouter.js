@@ -14,6 +14,11 @@ userRouter
   .get(userController.signupPage)
   .post(userController.register);
 
+userRouter.route("/forgotpassword").get(userController.formForgotPassword);
+userRouter.route("/password/reset").put(userController.verifyOtp);
+userRouter.route("/password/forgot").post(userController.forgotPassword);
+userRouter.route("/password/reset/success").put(userController.resetPassword);
+
 userRouter
   .route("/login")
   .get(userController.signinPage)

@@ -2,6 +2,9 @@ const bcrypt = require("bcrypt");
 var passport = require("passport");
 const Users = require("../model/users");
 const sendToken = require("../config/jwttoken");
+const speakeasy = require("speakeasy");
+const sendEmail = require("../middelware/sendEmail");
+const bycrypt = require("bcrypt");
 require("../middelware/passport")(passport);
 
 class userController {
@@ -12,9 +15,9 @@ class userController {
   }
 
   async register(req, res, next) {
-    const { username, password, fullName, YOB } = req.body;
+    const { username, email, password, fullName, YOB } = req.body;
     let errors = [];
-    if (!username || !password || !fullName || !YOB) {
+    if (!username || !password || !email || !fullName || !YOB) {
       errors.push({ msg: "Please enter all fields" });
     }
     if (password.length < 6) {
@@ -24,6 +27,7 @@ class userController {
       res.render("register", {
         errors,
         username,
+        email,
         password,
         fullName,
         YOB,
@@ -35,16 +39,20 @@ class userController {
           res.render("register", {
             errors,
             username,
+            email,
             password,
             fullName,
             YOB,
           });
         } else {
+          const secret = speakeasy.generateSecret({ length: 20 });
           const newUser = new Users({
             username,
             password,
             fullName,
             YOB,
+            email,
+            otpSecret: secret.base32,
           });
           //Hash password
           bcrypt.hash(newUser.password, 10, function (err, hash) {
@@ -66,6 +74,92 @@ class userController {
         }
       });
     }
+  }
+
+  formForgotPassword(req, res, next) {
+    res.render("forgotpassword");
+  }
+
+  async forgotPassword(req, res, next) {
+    const user = await Users.findOne({ email: req.body.email });
+    if (!user) {
+      req.flash("error_msg", "User not found");
+      return res.redirect("/users/forgotpassword");
+    }
+    console.log(user.email);
+    console.log(user.otpSecret);
+    const otp = speakeasy.totp({
+      secret: user.otpSecret,
+      digits: 6,
+      window: 20,
+    });
+    console.log(otp);
+
+    const message = `Your OTP code for password recovery is: ${otp}`;
+
+    try {
+      await sendEmail(user.email, {
+        subject: "Password Recovery",
+        message,
+      });
+      console.log(user.email);
+
+      // await sendSMS(user.phone, { message });
+
+      req.session.forgotpassword = {
+        email: user.email,
+        otpSecret: user.otpSecret,
+      };
+
+      return res.render("verifyOtp");
+    } catch (error) {}
+  }
+
+  async verifyOtp(req, res, next) {
+    const { email, otpSecret } = req.session.forgotpassword;
+
+    const isVerified = speakeasy.totp.verify({
+      secret: otpSecret,
+      token: req.body.otp,
+      digits: 6,
+      window: 1,
+    });
+
+    if (!isVerified) {
+      req.flash("error_msg", "Invalid OTP code");
+      return res.render("verifyOtp");
+    } else {
+      req.flash("success_msg", "Valid OTP code");
+      return res.render("resetPassword");
+    }
+  }
+
+  async resetPassword(req, res, next) {
+    const { email } = req.session.forgotpassword;
+    const { newPassword, confirmNewPassword } = req.body;
+
+    const user = await Users.findOne({ email });
+    if (!user) {
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      req.flash(
+        "error_msg",
+        "Confirm password doesn't match password, please input again!"
+      );
+      return res.render("resetPassword");
+    }
+
+    const salt = await bycrypt.genSalt(10);
+    const hashedPassword = await bycrypt.hash(newPassword, salt);
+
+    user.password = hashedPassword;
+    await user.save().then((user) => {
+      req.flash("success_msg", "Change password success, try login!");
+      delete req.session.forgotpassword;
+      return res.redirect("/users/login");
+    });
   }
 
   signinPage(req, res, next) {
